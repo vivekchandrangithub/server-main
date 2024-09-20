@@ -5,14 +5,17 @@ const userRoutes=require('./routes/userRoutes')
 const cartRoutes= require('./routes/cartRoutes')
 const authRoutes=require('./routes/authRoutes')
 const adminRoutes=require('./routes/adminRoutes')
-const bcrypt = require('bcrypt');
+const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 
+require('dotenv').config();
 
 const cors = require('cors')
 const mongoose = require('mongoose');
 const app = express()
-const port = 3000
+
+const port = process.env.PORT || 3000;
+const mongoUri = process.env.MONGO_URI;
 
 app.get('/', (req, res) => {
   res.send('HELLO BACKEND DEVELOPER')
@@ -41,7 +44,7 @@ app.listen(port,() => {
 })
 
 async function main() {
-  await mongoose.connect('mongodb+srv://vivekchandran663:server01@cluster0.x9hzd.mongodb.net/server01?retryWrites=true&w=majority&appName=Cluster0');
+  await mongoose.connect(mongoUri);
 }
 
 main().then(()=>console.log("connected successfully")).catch(err => console.log(err));
