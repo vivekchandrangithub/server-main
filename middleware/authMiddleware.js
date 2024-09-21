@@ -6,7 +6,7 @@ const verifyToken = (req, res, next) => {
   if (!token) return res.status(401).json({ message: 'Access Denied' });
 
   try {
-    const verified = jwt.verify(token, '61b19ed193347d3a3c2b056ca3cf0af8639cea06a78ab8cb8c03a66f81c725634de8db004b5404e2f2418eae68f34b8ab1b1763a4a0cc2dcfd8a9a0dfc163719');
+    const verified = jwt.verify(token,JWT_SECRET_KEY);
     req.user = verified;
     next();
   } catch (err) {
