@@ -13,4 +13,3 @@ router.patch('/:foodId', updateFood);
 router.delete('/:foodId', deleteFood);
 
 module.exports = router;
-

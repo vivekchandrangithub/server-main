@@ -37,11 +37,25 @@ const getAllUser=async(req, res) => {
     await User.findByIdAndDelete(req.params.userId)
       res.send('Deleted')
     }
+    const checkUser = async (req, res, next) => {
+      try {
+          const { user } = req;
+          if (!user) {
+              res.status(401).json({ success: false, message: "user not autherized" });
+          }
+  
+          res.json({ success: true, message: "user autherized" });
+      } catch (error) {
+          console.log(error);
+          res.status(error.statusCode || 500).json({ message: error.message || "Internal server error" });
+      }
+  };
     
     module.exports={
       getAllUser,
       getUserById,
       userSignup,
       updateUser,
-      deleteUser
+      deleteUser,
+      checkUser
     }
