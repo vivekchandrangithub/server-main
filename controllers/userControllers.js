@@ -3,6 +3,19 @@ const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 
 const saltRounds = 10;
+const getUserProfile = async (req, res) => {
+  try {
+    const user = await User.findById(req.user._id);  // Access the user ID from the decoded token
+    if (!user) {
+      return res.status(404).json({ message: 'User not found' });
+    }
+    res.json({ success: true, user });
+  } catch (error) {
+    res.status(500).json({ success: false, message: 'Server error' });
+  }
+};
+
+module.exports = { getUserProfile };
 
 const getAllUser=async(req, res) => {
     const users=await User.find({});
@@ -37,25 +50,11 @@ const getAllUser=async(req, res) => {
     await User.findByIdAndDelete(req.params.userId)
       res.send('Deleted')
     }
-    const checkUser = async (req, res, next) => {
-      try {
-          const { user } = req;
-          if (!user) {
-              res.status(401).json({ success: false, message: "user not autherized" });
-          }
-  
-          res.json({ success: true, message: "user autherized" });
-      } catch (error) {
-          console.log(error);
-          res.status(error.statusCode || 500).json({ message: error.message || "Internal server error" });
-      }
-  };
-    
     module.exports={
       getAllUser,
       getUserById,
       userSignup,
       updateUser,
       deleteUser,
-      checkUser
+      getUserProfile
     }
