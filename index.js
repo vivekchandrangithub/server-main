@@ -30,6 +30,7 @@ app.use(cors({
 }))
 app.use(express.json())
 
+
 app.use('/foods', foodRoutes)
 app.use('/restaurents', restaurentRoutes)
 app.use('/carts', cartRoutes)
@@ -37,7 +38,6 @@ app.use('/usersignup', userRoutes)
 app.use('/adminsignup',adminRoutes)
 app.use('/login',authRoutes)
 app.use('/logout',authRoutes)
-
 
 app.listen(port,() => {
   console.log(`Example app listening on port ${port}`)

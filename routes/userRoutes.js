@@ -7,7 +7,7 @@ router.get('/profile', verifyToken, getUserProfile)
 router.get('/', verifyToken, getAllUser);
 router.get('/:userId',verifyToken,  getUserById);
 router.post('/user', userSignup);
-router.patch('/:userId', verifyToken, updateUser);  // Fixed this line
+router.patch('/:userId', verifyToken, updateUser);
 router.delete('/:userId',verifyToken,  deleteUser);
 
 module.exports = router;

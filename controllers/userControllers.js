@@ -22,10 +22,19 @@ const getAllUser=async(req, res) => {
     res.json(users)
   }
 
- const getUserById= async(req, res) => {
-  const user=await User.findById(req.params.userId).exec();
-  res.json(user)
-  }
+  const getUserById = async (req, res) => {
+    const { userId } = req.params; 
+    try {
+      const user = await User.findById(userId); 
+      if (!user) {
+        return res.status(404).json({ message: 'User not found' });
+      }
+      res.json(user); 
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ message: 'Server error' });
+    }
+  };
   
  const userSignup = async (req, res) => {
     const { name,email,password,mobile } = req.body;
