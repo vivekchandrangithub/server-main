@@ -14,11 +14,7 @@ const cors = require('cors')
 const mongoose = require('mongoose');
 const app = express()
 
-app.use(cors({
-  origin: ["http://localhost:5173, https://vite-project-8aqc.vercel.app/"],
-  credentials: true,
-  methods :['POST','GET',"PUT","DELETE","OPTION"], 
-}))
+app.use(cors())
 
 app.use(express.json())
 
