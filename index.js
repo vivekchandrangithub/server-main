@@ -23,7 +23,7 @@ app.get('/', (req, res) => {
 
 
 app.use(cors({
-  origin: ["http://localhost:5173"],
+  origin: ["http://localhost:5173,https://vite-project-8aqc.vercel.app/"],
   credentials: true,
   methods :['POST','GET',"PUT","DELETE","OPTION"],
   

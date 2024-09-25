@@ -34,7 +34,7 @@ const getAllUser=async(req, res) => {
       console.error(error);
       res.status(500).json({ message: 'Server error' });
     }
-  };
+  };  
   
  const userSignup = async (req, res) => {
     const { name,email,password,mobile } = req.body;
