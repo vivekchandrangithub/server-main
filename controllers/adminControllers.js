@@ -18,8 +18,6 @@ const getAllAdmin=async(req, res) => {
     const { name,email,password,mobile } = req.body;
     const hashedPassword = await bcrypt.hash(password, saltRounds);
     const admin = new Admin({name,email,password: hashedPassword,mobile});
-        
-           
     await admin.save();
     const token = jwt.sign({ _id: admin._id, role: 'admin' }, '61b19ed193347d3a3c2b056ca3cf0af8639cea06a78ab8cb8c03a66f81c725634de8db004b5404e2f2418eae68f34b8ab1b1763a4a0cc2dcfd8a9a0dfc163719');
     res.cookie("token",token);

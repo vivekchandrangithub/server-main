@@ -17,10 +17,15 @@ const getUserProfile = async (req, res) => {
 
 module.exports = { getUserProfile };
 
-const getAllUser=async(req, res) => {
-    const users=await User.find({});
-    res.json(users)
+const getAllUser = async (req, res) => {
+  try {
+    const users = await User.find({}).select('name email'); // Adjust as necessary
+    res.json(users);
+  } catch (error) {
+    console.error(error); // Log the error for debugging
+    res.status(500).json({ message: 'Server Error' });
   }
+};
 
   const getUserById = async (req, res) => {
     const { userId } = req.params; 

@@ -4,15 +4,10 @@ const { getAllRestaurent,getVegRestaurents, getNonVegRestaurents, getRestaurentB
 
 router.get('/', getAllRestaurent);
 router.get('/veg', getVegRestaurents); 
-
 router.get('/non-veg', getNonVegRestaurents); 
-
 router.get('/:restaurentId', getRestaurentById);
-
 router.post('/', postRestaurent);
-
 router.patch('/:restaurentId', updateRestaurent);  
-
 router.delete('/:restaurentId', deleteRestaurent);
 
 module.exports = router;

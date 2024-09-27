@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const { userLogin,adminLogin,userLogout,adminLogout} = require('../controllers/authControllers');
+const { verifyToken, authenticateToken } = require('../middleware/authMiddleware');
 
 
 
