@@ -20,6 +20,7 @@ app.use(cors({
   methods: ['POST', 'GET', 'PUT', 'DELETE', 'OPTIONS'], 
 }));
 
+
 app.use(express.json())
 
 const port = process.env.PORT || 3000;
