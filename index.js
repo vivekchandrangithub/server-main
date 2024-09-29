@@ -5,6 +5,7 @@ const userRoutes=require('./routes/userRoutes')
 const cartRoutes= require('./routes/cartRoutes')
 const authRoutes=require('./routes/authRoutes')
 const adminRoutes=require('./routes/adminRoutes')
+const paymentRoutes =require('./routes/paymentRoutes')
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 
@@ -42,6 +43,7 @@ app.use('/usersignup', userRoutes)
 app.use('/adminsignup',adminRoutes)
 app.use('/login',authRoutes)
 app.use('/logout',authRoutes)
+app.use('/payments',paymentRoutes)
 
 app.listen(port,() => {
   console.log(`Example app listening on port ${port}`)
