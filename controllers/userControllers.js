@@ -3,16 +3,19 @@ const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 
 const saltRounds = 10;
+
+
 const getUserProfile = async (req, res) => {
   try {
-    const user = await User.findById(req.user._id);  // Access the user ID from the decoded token
+    // Find user by ID, excluding the password from the response
+    const user = await User.findById(req.user._id).select('-password');
     if (!user) {
-      return res.status(404).json({ message: 'User not found' });
+        return res.status(404).json({ success: false, message: 'User not found' });
     }
     res.json({ success: true, user });
-  } catch (error) {
+} catch (error) {
     res.status(500).json({ success: false, message: 'Server error' });
-  }
+}
 };
 
 module.exports = { getUserProfile };
